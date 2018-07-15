@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              xmlns:control="clr-namespace:XFEmptyViewSample.Controls"
+               xmlns:helper="clr-namespace:XFEmptyViewSample.Helpers"
+               xmlns:viewmodel="clr-namespace:XFEmptyViewSample.ViewModels"
+             x:Class="XFEmptyViewSample.Views.ListViewPage" Title="Birds">
+    <ContentPage.BindingContext>
+        <viewmodel:ListViewPageViewModel/>
+    </ContentPage.BindingContext>
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:Converter x:Key="CountToBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   <ContentPage.ToolbarItems>
+    <ToolbarItem Name="Refresh" Command="{Binding RefreshCommand}" Order="Primary" Text="Refresh" Priority="0" />
+   </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+          <Grid>
+            <control:EmptyView VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsEmpty}" />
+            <ListView 
+                IsVisible="{Binding IsEmpty, Converter={StaticResource CountToBooleanConverter}}" 
+                ItemsSource="{Binding BirdsList}"
+                HasUnevenRows="true"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshCommand}">
+              <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                 <StackLayout Orientation="Vertical" Margin="20,20,20,20" Spacing="10">
+                                 <Label Text="{Binding Title}"
+                                        FontSize="Large"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center" 
+                                        TextColor="Gray"></Label>
+                                 <Label Text="{Binding Description}"
+                                        FontSize="Small"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        TextColor="Gray"></Label>
+                                 </StackLayout>
+                             </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>
