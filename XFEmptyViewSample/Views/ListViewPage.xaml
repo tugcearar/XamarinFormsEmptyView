@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
      <ContentPage.Resources>
         <ResourceDictionary>
-            <helper:Converter x:Key="CountToBooleanConverter" />
+            <helper:Converter x:Key="Converter" />
         </ResourceDictionary>
     </ContentPage.Resources>
    <ContentPage.ToolbarItems>
@@ -20,7 +20,7 @@
           <Grid>
             <control:EmptyView VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsEmpty}" />
             <ListView 
-                IsVisible="{Binding IsEmpty, Converter={StaticResource CountToBooleanConverter}}" 
+                IsVisible="{Binding IsEmpty, Converter={StaticResource Converter}}" 
                 ItemsSource="{Binding BirdsList}"
                 HasUnevenRows="true"
                 IsPullToRefreshEnabled="true"
