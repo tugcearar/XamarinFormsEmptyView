@@ -1,4 +1,4 @@
-# Create and use simple Empty View for our Empty ListViews in Xamarin.Forms
+# Simple Empty View for Empty ListViews in Xamarin.Forms
 
 Create and use simple Empty View for our Empty ListViews in Xamarin.Forms
 
